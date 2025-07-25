@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Number of Tickets</title>
+  <style>
+    /* 原 CSS 全數保留，略去註解 */
+    .error { border: 2px solid red !important; background-color: #ffe6e6; }
+    .error-text { color: red; font-weight: bold; margin-top: 5px; }
+    body { margin: 0; font-family: "Noto Sans TC", sans-serif; background-color: #f9f9f9; }
+    .top-bar {
+      background: #EEAECA;
+      background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+      color: white; display: flex; justify-content: space-between; padding: 10px 20px;
+    }
+    .container { padding: 50px 20px; max-width: 1000px; margin: 0 auto; }
+    .progress { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+    .circle { width: 30px; height: 30px; border-radius: 50%; background-color: #ccc; }
+    .circle.active { background-color: #2a4fa1; color: white; display: flex; align-items: center; justify-content: center; }
+    .line { border-top: 5px solid #ccc; flex: 1; }
+    .ticket-box { background: white; border: 1px solid #ddd; padding: 30px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    .ticket-header { display: flex; align-items: center; margin-bottom: 20px; }
+    .ticket-header img { width: 200px; margin-right: 20px; }
+    .ticket-row, .ticket-data {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; text-align: center;
+    }
+    .ticket-row { font-weight: bold; background: #f0f0f0; padding: 10px 0; margin-bottom: 5px; }
+    .ticket-data { align-items: center; padding: 10px 0; }
+    .verify { display: flex; align-items: center; margin: 20px 0; }
+    .verify img { width: 120px; margin-left: 10px; }
+    .buttons { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+    .btn { padding: 10px 30px; font-size: 16px; border: none; cursor: pointer; }
+    .btn.green { background-color: #2a7a2f; color: white; transition: background-color 0.3s, color 0.3s; }
+    .btn.green:hover, .btn.green:active { background-color: #5cbf60; color: #eaffea; }
+    .note { font-size: 14px; color: red; margin-top: 5px; }
+
+    @media (max-width: 768px) {
+      .top-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .container { padding: 20px 10px; }
+      .ticket-header { flex-direction: column; align-items: flex-start; }
+      .ticket-header img { width: 100%; margin-bottom: 10px; }
+      .ticket-row, .ticket-data { grid-template-columns: 1fr; row-gap: 10px; }
+      .verify { flex-direction: column; align-items: stretch; }
+      .verify img { width: 100%; margin-left: 0; margin-bottom: 10px; }
+      .verify input { margin-left: 0; }
+      .buttons { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const params = new URLSearchParams(window.location.search);
+      const seat = params.get('seat');
+      const price = params.get('price');
+      const color = params.get('color');
+
+      if (seat && price) {
+        const ticketLabel = document.getElementById('ticketLabel');
+        if (ticketLabel) {
+          ticketLabel.textContent = `${seat} Full Price ${price}`;
+        }
+      }
+
+      if (color) {
+        const colorBox = document.querySelector('.color-box');
+        if (colorBox) {
+          colorBox.style.backgroundColor = color;
+        }
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <div style="display: flex; gap: 20px;">
+      <div>Home</div>
+      <div>Event Info</div>
+      <div>Latest News</div>
+      <div>FAQ</div>
+      <div>Order</div>
+    </div>
+    <div>Account</div>
+  </div>
+  <div class="container">
+    <div class="progress" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; flex-wrap: wrap;">
+        <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #2a4fa1; color: white; display: flex; align-items: center; justify-content: center; font-size: 18px;">✓</div>
+        <div style="width: 140px; height: 2px; background-color: #2a4fa1;"></div>
+        <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #2a4fa1; color: white; display: flex; align-items: center; justify-content: center; font-size: 18px;">✓</div>
+        <div style="width: 140px; height: 2px; background-color: #ccc;"></div>
+        <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #ccc;"></div>
+        <div style="width: 140px; height: 2px; background-color: #ccc;"></div>
+        <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #ccc;"></div>
+        <div style="width: 140px; height: 2px; background-color: #ccc;"></div>
+        <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #ccc;"></div>
+      </div>
+    </div>
+
+    <div class="ticket-header">
+      <img src="https://github.com/harperchouu/final/blob/main/image.png?raw=true" alt="poster" />
+      <div>
+        <div style="font-size: 18px; font-weight: bold;">Gummii: Chew the Moment Tour - Taipei</div>
+        <div style="margin-top: 5px;">📅 2025/6/16 (Sat) 19:30 📍 Taipei Dome T-Arena</div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">You can select up to 4 tickets</div>
+
+    <div class="ticket-box">
+      <div class="ticket-row">
+        <div>Ticket Type / Price (NTD)</div>
+        <div>Select Quantity</div>
+        <div>Note</div>
+      </div>
+      <div class="ticket-data">
+        <div id="ticketLabel">Full Price</div>
+        <select>
+          <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+        </select>
+        <div></div>
+      </div>
+      <div class="verify">
+        <img src="https://github.com/harperchouu/final/blob/main/gaee.png?raw=true" alt="CAPTCHA" />
+        <input type="text" placeholder="Enter CAPTCHA" style="flex:4; padding: 7px; margin-left: 30px;" />
+      </div>
+      <div class="note">
+        ※ Please enter the CAPTCHA in English. Click the image to refresh.<br/>
+        ※ Please do not operate across multiple windows. Click submit to avoid failure.
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <label><input type="checkbox" /> I have read and agree to the <a href="#">Terms of Service</a> and event information. I also waive Article 9 of the contract and authorize the ticketing company to collect, process, and use my personal data as specified.</label>
+    </div>
+
+    <div class="buttons">
+      <a id="confirmBtn" style="text-decoration: none;">
+        <button class="btn green">Confirm Selection</button>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="countdown" style="position: fixed; bottom: 20px; right: 20px; background-color: #ffc; padding: 10px; border: 1px solid #ccc; z-index: 1000; font-weight: bold;"></div>
+
+<script>
+  if (!sessionStorage.getItem('startTime')) {
+    sessionStorage.setItem('startTime', Date.now().toString());
+  }
+
+  const countdownElement = document.getElementById("countdown");
+
+  const interval = setInterval(() => {
+    const startTime = parseInt(sessionStorage.getItem('startTime'), 10);
+    const endTime = startTime + 10000;
+    const remaining = Math.ceil((endTime - Date.now()) / 1000);
+
+    if (countdownElement) {
+      countdownElement.textContent = `Time remaining: ${remaining} seconds`;
+    }
+
+    if (Date.now() >= endTime) {
+      clearInterval(interval);
+      sessionStorage.removeItem('startTime');
+      alert("Too late");
+      window.location.href = "loading.html#timeout";
+    }
+  }, 1000);
+
+  document.getElementById('confirmBtn').addEventListener('click', function(event) {
+    event.preventDefault();
+    let isValid = true;
+
+    const select = document.querySelector('.ticket-data select');
+    const verifyInput = document.querySelector('.verify input');
+    const agreeCheckbox = document.querySelector('input[type="checkbox"]');
+
+    select.classList.remove('error');
+    verifyInput.classList.remove('error');
+    agreeCheckbox.parentElement.classList.remove('error');
+
+    if (!select.value || select.value === '0') {
+      select.classList.add('error');
+      isValid = false;
+    }
+
+    if (!verifyInput.value.trim()) {
+      verifyInput.classList.add('error');
+      isValid = false;
+    }
+
+    if (!agreeCheckbox.checked) {
+      agreeCheckbox.parentElement.classList.add('error');
+      isValid = false;
+    }
+
+    if (isValid) {
+      window.location.href = 'loading.html';
+    }
+  });
+</script>
+</body>
+</html>

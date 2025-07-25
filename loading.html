@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loading...</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: white;
+    }
+
+    .top-bar {
+      background: #EEAECA;
+      background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+
+    .section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 60px);
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 6px solid #cce0f5;
+      border-top: 6px solid #2268b3;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      color: #333;
+      font-size: 20px;
+    }
+
+    .notice-text {
+      font-size: 20px;
+      color: #000;
+      text-align: center;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 40px;
+    }
+
+    .btn {
+      width: 120px;
+      height: 50px;
+      background: radial-gradient(circle, rgba(255, 222, 234, 1) 100%, rgba(148, 187, 233, 1) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      border: none;
+      font-family: "Noto Sans TC", sans-serif;
+    }
+
+    .btn:hover,
+    .btn:active {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    #loading {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .top-bar > div:first-child {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .section {
+        padding: 0 10px;
+        text-align: center;
+      }
+
+      .notice-text {
+        font-size: 20px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div style="display: flex; gap: 20px;">
+      <div>Home</div>
+      <div>Event Info</div>
+      <div>Latest News</div>
+      <div>FAQ</div>
+      <div>Order</div>
+    </div>
+    <div>Account</div>
+  </div>
+
+  <div id="loading" class="section">
+    <div class="loader"></div>
+    <div class="loading-text">Please wait and avoid any operations...</div>
+  </div>
+
+  <div id="scalper" class="section">
+    <div class="notice-text">
+      Gummii: Chew the Moment Tour - Taipei<br />
+      The area you selected is sold out
+    </div>
+    <div class="btn-group">
+      <button class="btn" onclick="goToData()">Got it</button>
+      
+    </div>
+  </div>
+
+  <script>
+    // 顯示提示畫面（60秒後）
+    setTimeout(function () {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('scalper').style.display = 'flex';
+    }, 1000);
+
+    function goToData() {
+      window.location.href = "data.html";
+    }
+  </script>
+</body>
+</html>

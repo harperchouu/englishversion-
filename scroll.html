@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facebook Ticket Hunt</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Times New Roman', Times, serif;
+      background-color: #f9f9f9;
+    }
+    #plefk {
+      width: 100%;
+      height: 100vh;
+      padding: 0;
+      margin: 0;
+    }
+    #popup-overlay button {
+      font-size: 18px;
+      padding: 10px 22px;
+      margin: 0 10px;
+      min-width: 70px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- 捲動式影片：FB -->
+  <div style="position: fixed; top: 20px; right: 20px; z-index: 10000; font-size: 20px;">
+    💰Total Cost: 0 NTD
+  </div>
+  <!-- 捲動式影片：news -->
+  <style>
+    #hfdag .scrollable-video .section {
+      background-color: rgba(0, 0, 0, 0.7) !important;
+      color: white !important;
+    }
+    #hfdag .scrollable-video .section * {
+      color: white !important;
+    }
+  </style>
+  <style></style><div id="hfdag">
+    
+    <script>
+      (function() {
+        var namespace = '@story-telling-reporter/react-embed-code-generator@2.2.13';
+        var pkg = 'scrollable-video';
+        if (typeof window != 'undefined') {
+          if (!window.hasOwnProperty(namespace)) {
+            window[namespace] = {};
+          }
+          if (window[namespace] && !window[namespace].hasOwnProperty(pkg)) {
+            window[namespace][pkg] = [];
+          }
+          if (Array.isArray(window[namespace][pkg])) {
+        var data = {"video":{"src":"https:\u002F\u002Fharperchouu.github.io\u002Fvediodemo\u002Fscroll.mov","mobileSrc":"https:\u002F\u002Fharperchouu.github.io\u002Fvediodemo\u002Fscroll.mov","duration":10.4345},"captions":[{"id":"pbeef","width":"narrow","alignment":"left","startTime":0.79,"rawContentState":{"blocks":[{"key":"3sqg1","data":{},"text":"Let’s take a look at the process of buying scalped tickets. Facebook has many concert ticket exchange groups, including original-price resellers and scalpers. Posts with phrases like 'Not original price' or 'DM if you have a budget' usually indicate scalpers selling tickets at a markup.","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[{"style":"BOLD","length":14,"offset":0}]},{"key":"68nf7","data":{},"text":"","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}},{"id":"fpkmd","width":"narrow","alignment":"left","startTime":2.35,"rawContentState":{"blocks":[{"key":"dv9sk","data":{},"text":"Many fans, after failing to get tickets, browse Facebook groups for transferred or scalped tickets as a last chance to see their favorite concert.","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}},{"id":"hpcep","width":"narrow","alignment":"left","startTime":8.17,"rawContentState":{"blocks":[{"key":"aljgv","data":{},"text":"Do you remember how much a ticket originally cost?","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"ftae3","data":{},"text":"One ticket originally costs 7800 NTD, but scalpers resell them for almost twice the price!","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}}],"darkMode":false,"secondsPer100vh":1.5,"uuid":"25644e2e-f67a-4a1a-b914-5dc25558daa1"};
+            window[namespace][pkg].push(data);
+          }
+        }
+      })()
+    </script>
+    <div id="25644e2e-f67a-4a1a-b914-5dc25558daa1"></div>
+    <script type="text/javascript" defer crossorigin src="https://cdn.jsdelivr.net/npm/@story-telling-reporter/react-embed-code-generator@2.2.13/dist/scrollable-video.js"></script>
+  </div>
+  <!-- 彈出視窗 -->
+  <div id="popup-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index:9999;">
+    <div style="background:#fff; padding:2rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.2); text-align:center;">
+      <p>Seeing a price twice the original, would you still buy a scalped ticket?</p>
+      <button style="font-family: 'Times New Roman', Times, serif;" onclick="handleAnswer(true)">Yes</button>
+      <button style="font-family: 'Times New Roman', Times, serif;" onclick="handleAnswer(false)">No</button>
+    </div>
+  </div>
+  <script>
+    let popupShown = false;
+
+    window.addEventListener('scroll', function () {
+      const scrollBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight;
+      if (!popupShown && scrollBottom) {
+        document.getElementById('popup-overlay').style.display = 'flex';
+        popupShown = true;
+      }
+    });
+
+    function handleAnswer(isYes) {
+      window.location.href = isYes ? 'yes.html' : 'no.html';
+    }
+  </script>
+</body>
+</html>

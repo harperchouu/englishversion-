@@ -1,0 +1,157 @@
+<!-- Top navigation bar -->
+<div style="background: #EEAECA;
+      background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);; color: white; display: flex; justify-content: space-between; padding: 10px 20px;">
+  <div style="display: flex; gap: 20px;">
+    <div>Home</div>
+    <div>Event Info</div>
+    <div>Latest News</div>
+    <div>FAQ</div>
+    <div>Order</div>
+  </div>
+  <div>Account</div>
+</div>
+
+<style>
+  button {
+    font-size: 16px;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background-color: #ffdeea;
+    color: rgb(16, 16, 16);
+    padding: 10px 30px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-secondary {
+    background-color: lightgrey;
+    color: black;
+  }
+
+  .btn-primary-small {
+    background-color: #ffdeea;
+    color: black;
+    padding: 5px 20px;
+  }
+
+  #countdown {
+    margin-top: 10px;
+    font-size: 32px;
+    font-weight: bold;
+    color: red;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  button:hover,
+  button:active {
+    background-color: #ffd7f7 !important;
+    transition: background-color 0.3s ease;
+  }
+</style>
+
+<!-- Main content -->
+<div style="padding: 20px;">
+  <div style="background-color: #dff1fd; padding: 30px; text-align: center;">
+    <div style="font-weight: bold; color: #21759b;">
+      Gummii: Chew the Moment Tour - Taipei
+      <br/>
+      All Zones On Sale
+    </div>
+    <div style="font-weight: bold; color: #21759b; margin-top: 10px;">
+      Ticket Sale Time: 2025/05/03 (Sat) 11:00 AM
+    </div>
+    <div id="countdown" style="margin-top: 10px; font-size: 30px; font-weight: bold; color: red;">Time Remaining: 10 seconds</div>
+  </div>
+
+  <!-- Buttons -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+    <button class="btn-primary">Buy Now</button>
+  </div>
+
+  <!-- Notice -->
+  <div style="background-color: #fddede; color: #9c0000; padding: 10px 20px; margin-top: 20px; font-size: 14px;">
+    To purchase tickets, you must first register as a member and complete mobile verification. Only after verification can you proceed with purchasing. Please verify in advance to avoid delays. (Mobile verification is only required for first-time members)
+  </div>
+
+  <!-- Ticket Table (initially hidden) -->
+  <div id="ticketTable" style="display: none; margin-top: 20px;">
+    <table style="width: 100%; border-collapse: collapse; text-align: center; font-family: sans-serif;">
+      <thead>
+        <tr style="background-color: #f0f0f0; font-weight: bold;">
+          <th style="border: 1px solid #ccc; padding: 10px;">Show Time</th>
+          <th style="border: 1px solid #ccc; padding: 10px;">Event Name</th>
+          <th style="border: 1px solid #ccc; padding: 10px;">Venue</th>
+          <th style="border: 1px solid #ccc; padding: 10px;">Purchase Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 10px;">2025/05/29（六）19:30</td>
+          <td style="border: 1px solid #ccc; padding: 10px;"> Gummii: Chew the Moment Tour - Taipei</td>
+          <td style="border: 1px solid #ccc; padding: 10px;">Taipei Dome T-Arena</td>
+          <td style="border: 1px solid #ccc; padding: 10px;">
+            <a href="seat.html" style="text-decoration: none;">
+              <button class="btn-primary">Order Now</button>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 10px;">2025/05/29（日）18:30</td>
+          <td style="border: 1px solid #ccc; padding: 10px;">Gummii: Chew the Moment Tour - Taipei</td>
+          <td style="border: 1px solid #ccc; padding: 10px;">Taipei Dome T-Arena</td>
+          <td style="border: 1px solid #ccc; padding: 10px;">
+            <a href="seat.html" style="text-decoration: none;">
+              <button class="btn-primary">Order Now</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align: center; font-size: 12px; margin-top: 20px;">
+  This area contains external advertisements. We are not affiliated with these sites. Please click with caution.
+</div>
+
+<script>
+  document.querySelectorAll("button").forEach(btn => {
+    if (btn.textContent.includes("Buy Now")) {
+      btn.addEventListener("click", () => {
+        document.getElementById("ticketTable").style.display = "block";
+      });
+    }
+  });
+
+  sessionStorage.setItem('startTime', Date.now().toString());
+
+  const countdownElement = document.getElementById("countdown");
+
+  const interval = setInterval(() => {
+    const startTime = parseInt(sessionStorage.getItem('startTime'), 10);
+    const endTime = startTime + 10000; // 10 秒
+    const remaining = Math.ceil((endTime - Date.now()) / 1000);
+
+    if (countdownElement) {
+      countdownElement.textContent = `Time Remaining: ${remaining} seconds`;
+    }
+
+    if (Date.now() >= endTime) {
+      clearInterval(interval);
+      sessionStorage.removeItem('startTime');  // 清除以防回到頁面重啟
+      alert("Too late!");
+      window.location.href = "loading.html#timeout";
+    }
+  }, 1000);
+</script>
+<head>
+  <title>Scalping and Fandom Culture</title>
+</head>

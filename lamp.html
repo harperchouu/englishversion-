@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Total Cost</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding-bottom: 60px;
+      background-color: white;
+    }
+    .cost-label {
+      font-size: 17px;
+      margin-top: 60px;
+      text-align: center;
+    }
+    .cost-display {
+      font-size: 17px;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .button-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .image-container {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .header-image {
+      width: 400px;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    .image-description {
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.6;
+      margin: 0 auto;
+      max-width: 550px;
+      color: #000;
+    }
+    .continue-button {
+        background: #ffdeea;
+        background: radial-gradient(circle, rgba(255, 222, 234, 1) 100%, rgba(148, 187, 233, 1) 100%);;
+      padding: 12px 30px;
+      font-size: 17px;
+
+   
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .continue-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+    @media (max-width: 768px) {
+      .header-image {
+        width: 90%;
+        height: auto;
+      }
+
+      .image-description {
+        font-size: 17px;
+        padding: 0 10px;
+        line-height: 1.6;
+      }
+
+      .cost-display {
+        font-size: 17px;
+        padding: 0 10px;
+      }
+
+      .continue-button {
+        width: 90%;
+        font-size: 17px;
+        padding: 12px;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0 10px;
+      }
+
+      .cost-label {
+        font-size: 1px;
+        padding: 0 10px;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const currentPath = sessionStorage.getItem("pathHistory") || "";
+      sessionStorage.setItem("pathHistory", currentPath + ">lamp.html");
+
+      const params = new URLSearchParams(window.location.search);
+      const total = params.get('total');
+      const totalDisplay = document.getElementById('total-cost-display');
+      if (total) {
+        totalDisplay.innerText = `💰Your Total Cost: ${total} NTD`;
+      } else {
+        totalDisplay.innerText = '💰Your Total Cost: 0 NTD';
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="image-container">
+    <img src="/Users/yuanhsichou/Desktop/project/手燈發光（去背）.png" alt="Fan Lightstick" class="header-image">
+    <div class="image-description"><span style="font-size: 24px;"><strong>Lightstick</strong></span><br><br>Most K-pop idol release official lightsticks with specific shapes, colors, and symbols that fans use to show their support during concerts or events.<br>These lightsticks usually support central control (one uniform color across the venue) or multi-point control (different colors by seat to form patterns or text). Once activated at a venue, the lighting technician controls the color and effects.</div>
+  </div><br><br>
+
+  <div class="cost-display" id="total-cost-display">💰：NTD</div>
+
+  <div class="button-container">
+    <a href="new.html" class="continue-button">Discover fan stories!</a>
+  </div>
+</body>
+</html>

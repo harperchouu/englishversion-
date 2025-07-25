@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>粉絲故事頁面</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Times New Roman', Times, serif;
+      line-height: 1.8;
+      color: #222;
+    }
+    .section {
+      padding: 35px 20px;
+    }
+    .section1 { background: #f4c8a3; }
+    .section2 { background: #fbd9bd; }
+    .section3 { background: #f5c88d; }
+    .section4 { background: #fdd2cb; }
+    .section5 { background: #fde2c7; }
+    .person {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 800px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+    .person img {
+      width: 180px;
+      margin-bottom: 10px;
+      max-width: 100%;
+      height: auto;
+    }
+    .person .text {
+      flex: 1;
+      min-width: 300px;
+      padding: 10px;
+    }
+    .quote {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+      font-size: 17px;
+    }
+    .quote img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 20px auto;
+    }
+    #lightbox {
+      text-align: center;
+      margin-top: 40px;
+    }
+    #lightbox img {
+      max-width: 90%;
+      height: auto;
+    }
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    .lightbox-modal img {
+      margin: auto;
+      display: block;
+      max-width: 80vw;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .lightbox-next {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      color: white;
+      font-size: 36px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .lightbox-prev {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      color: white;
+      font-size: 36px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    }
+
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(100%);
+      transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    }
+
+    .slide-in-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    /* 粉紅色背景與動態動畫效果的按鈕樣式 */
+    #fanButton {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #ffdbee;
+      color: black;
+      border: none;
+      max-width: 90%;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    /* 響應式設計：手機裝置 */
+    @media (max-width: 768px) {
+      .person {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .person img {
+        width: 60%;
+        max-width: 200px;
+      }
+
+      .person .text {
+        min-width: auto;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .quote {
+        padding: 20px 10px;
+        font-size: 17px;
+      }
+
+      .quote img {
+        width: 100%;
+      }
+
+      .wide-image {
+        width: 100% !important;
+        float: none !important;
+        margin: 0 auto !important;
+      }
+
+      .section {
+        padding: 20px 10px;
+      }
+
+      #fanButton {
+        width: 80%;
+        font-size: 16px;
+      }
+    }
+
+    #fanButton:hover,
+    #fanButton:active {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section section1">
+    <div class="person">
+      <div class="text">
+        <p><strong style="font-size: 22px;">Abby</strong></p>
+        <p>I flew from Seoul back to the U.S., stayed less than two days, and flew right back to Seoul again. This year I took over seventy flights. It's exhausting, but seeing the idol I love makes me happy. I believe he will take extra care of me in return.</p>
+        <p>I do all of this simply because I want to see the person I love. I love watching him shine on stage, and I want to talk to him. Every time we meet, he has never let me down.</p>
+      </div>
+      <img src="/Users/yuanhsichou/Desktop/project/粉絲1.png" alt="Abby">
+    </div>
+  </div>
+
+  <div class="section section2">
+    <div class="person">
+      <img src="/Users/yuanhsichou/Desktop/project/粉絲5.png" alt="Jennie">
+      <div class="text">
+        <p><strong style="font-size: 22px;">Jennie</strong></p>
+        <p>The craziest thing I’ve done so far was probably flying to the U.S. to follow them on tour. Maybe I’ll do something even crazier in the future, who knows?</p>
+        <p>At the time, I think I was going through separation anxiety. Just imagining not being able to see them (idols) for three months made me feel suffocated. I was anxious every single day. To ease that feeling, I decided to go (to the concert). Thinking about it now, it was wild, but it’s an experience I’ll probably remember for my entire life.</p>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="section section3">
+    <div class="person">
+      <div class="text">
+        <p><strong style="font-size: 22px;">Aerin</strong></p>
+        <p>I spent nearly NT$2 million (USD 62,500) on their recent comeback shows, including NT$130,000 (USD 4,063) just for a one-on-one photo with my idol. Altogether, I’ve spent close to NT$4 million (USD 125,000). I’m not really into collecting photocards, so I didn’t spend much on that.</p>
+        <p>I love one-on-one events the most. I’ve attended so many autograph sessions that my idol can even recognize me.</p>
+      </div>
+      <img src="/Users/yuanhsichou/Desktop/project/粉絲3.png" alt="Aerin">
+    </div>
+  </div>
+
+  <div class="section section4">
+    <div class="person">
+      <img src="/Users/yuanhsichou/Desktop/project/粉絲4.png" alt="Sun">
+      <div class="text">
+        <p><strong style="font-size: 22px;">Sun</strong></p>
+        <p>In the beginning, he was just a trainee in need of support, and I gave him everything I could. In return, he gave me the strength to get through everyday life. Through his eyes, I saw a more vibrant and colorful world—one I had never noticed before. If he’s happy, I’ll probably be the one who cries first. This kind of emotional connection can only come from being a fan of someone you truly love.</p>
+        <p>Because I was supporting a trainee, I felt the pressure to boost his sales and always tried my best to buy as much as I could. But from placing an order to actually receiving the goods, it often took nearly four months of waiting. The only moment that truly brought me joy was when I opened the package. Still, I’ve always kept my spending within what I can afford, so I don’t regret buying anything.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section5" style="will-change: transform, opacity;">
+    <div class="person">
+      <div class="text">
+        <p><strong style="font-size: 22px;">Chiu-Bi</strong></p>
+        <p>To be honest, I didn’t know exactly how much I spent, it would’ve been a shocking number. During that time, I was constantly scrolling through Facebook. Every day after school, the first app I opened wasn’t Instagram, but the FB group page. On average, I’d spend at least one or two hours there, and sometimes even three, just checking prices, reading posts, joining group orders, and looking for buyers or purchasing agents.</p>
+        <p>It was mentally and financially draining, but what kept me going was this intense urge to “collect the full set” and get the prettiest photocards. Looking back now, I think that mindset was kind of crazy, but it was definitely a unique experience.</p>
+      </div>
+      <img src="/Users/yuanhsichou/Desktop/project/粉絲2.png" alt="邱比">
+    </div>
+  </div>
+
+  <div class="quote">
+
+    <br><br><p>The contemporary idol industry’s business model no longer relies solely on the music itself, but incorporates intricately designed consumer mechanisms that commodify fans’ affection. From photocards and special packaging albums, to fansign banners and fans' messaging apps like “Bubble,” entertainment companies have carefully created systems of emotional exchange— the more you buy, the deeper your involvement, and the closer connection you feel to your idol.</p>
+    
+    <div style="float: right; margin: 10px 0 20px 20px; width: 480px;">
+        <div style="position: relative; width: 100%;">
+          <img src="/Users/yuanhsichou/Desktop/project/DSC04630.JPG" alt="粉絲與手舉紙板" class="wide-image" style="cursor: pointer;" onclick="openLightbox(0)" />
+          <div style="position: absolute; bottom: 15px; left: 8px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 7px; font-size: 14px; border-radius: 4px;">
+            點擊看更多
+          </div>
+        </div>
+        <div class="wide-image" style="font-size: 14px; color: #919090; margin-top: 5px; text-align: justify;">As the idol industry continues to thrive, companies have begun selling a wide range of idol-related merchandise such as light sticks, dolls, and photocards.<br>Photo by Po-Yuan Chang and Pao-Ling Wang
+        </div>
+        
+    </div>
+    <p>These mechanisms create a sense of scarcity and uncertainty within the idol economy. However, as long as one has enough money, such barriers can often be bypassed. For most fans, this scarcity acts as a limitation; but for a select few, it opens a shortcut—an opportunity to be “seen” by their idols through financial investment. What fans are purchasing, ultimately, is not just the product itself, but also a form of symbolic capital that reflects their level of devotion.</p>
+    <p>Kpop.fashion.tw, a purchasing agent, explained that fans used to purchase albums released by their favorite idols, with some even collecting all official versions at once. However, in recent years, beyond the photocards, photocards with special content or photos from different sales channels have emerged, fueling a growing trend of bulk-buying.
+    </p>
+    <p>“Love is intangiable, so how to prove that you truly love someone? One way is by possessing physical items, things you can show to others,” said Shu-Mei Wang, professor of communication at National Chengchi University.
+      In addition to supporting idols through merchandise purchases, another costly way fans show their devotion is by attending events in person—a practice known as “chasing offline.” According to Wang, songs and videos can be reproduced, but live experiences cannot. The time fans get to actually see their idols is extremely limited, and entertainment companies take advantage of this by creating one-of-a-kind moments through fan meetings and concerts. These events draw fans to spend significant amounts of money in exchange for something rare: the idol’s attention.
+</p>
+    <p>Wang Meng-Rong, a third-year master’s student in the Communication program at National Chengchi University who is researching fan-idol intimacy, explains that today’s consumption patterns reflect how entertainment companies frame idols as emotional products to be mass-marketed. Through spending, fans experience a kind of “romance-like” connection, turning money into a means of emotional exchange. “Fans often say, ‘I spend money because I love you,’” Wang added.</p>
+    <p>“When promoting idols, entertainment companies also send the message that ‘if you love me, you should do certain things.’ Over time, this becomes an unspoken rule within fan communities,” said Shu-Mei Wang. She mentioned that because fans are clustered together in tightly groups, peer pressure becomes strong, subtly forcing fans to meet the consumption expectations set by entertainment companies.</p>
+    <p>Yu-Fen Ko, associate professor at the communication department in National Chengchi University, also pointed out that social media further amplifies comparison behavior among fans. “Take a concert, for example. While only tens of thousands may attend in person, once photos and posts are shared online, the entire global fandom sees it. What was once a single event can quickly grow into something massive.”</p>
+  
+    
+
+  <div id="lightboxModal" class="lightbox-modal">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <span class="lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
+    <img id="lightboxImage" src="">
+    <span class="lightbox-next" onclick="changeImage(1)">&#10095;</span>
+  </div>
+
+  <script>
+    const imagePaths = [
+      "/Users/yuanhsichou/Desktop/project/DSC04630.JPG",
+      "/Users/yuanhsichou/Desktop/project/IMG_0923.JPG",
+      "/Users/yuanhsichou/Desktop/project/IMG_0953 (2).JPG"
+    ];
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      document.getElementById("lightboxImage").src = imagePaths[currentIndex];
+      document.getElementById("lightboxModal").style.display = "block";
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightboxModal").style.display = "none";
+    }
+
+    function changeImage(direction) {
+      currentIndex += direction;
+      if (currentIndex < 0) {
+        currentIndex = imagePaths.length - 1;
+      } else if (currentIndex >= imagePaths.length) {
+        currentIndex = 0;
+      }
+      document.getElementById("lightboxImage").src = imagePaths[currentIndex];
+    }
+  </script>
+  <script>
+    const sections = document.querySelectorAll('.section');
+
+    sections.forEach((section, index) => {
+      const directionClass = index % 2 === 0 ? 'slide-in-right' : 'slide-in-left';
+      section.classList.add(directionClass);
+    });
+
+    function revealOnScroll() {
+      const revealPoint = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < revealPoint) {
+          section.classList.add('slide-in-visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+</div>
+  <div style="text-align: center; margin: 60px 0;">
+    <a href="pro.html" id="fanButton">Let’s find out what kind of fan you are!</a>
+  </div>
+</body>
+</html>

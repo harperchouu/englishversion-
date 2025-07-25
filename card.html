@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>總花費</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: white;
+    }
+    .cost-label {
+      font-size: 17px;
+      margin-top: 60px;
+      text-align: center;
+    }
+    .cost-display {
+      
+      font-size: 17px;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .button-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .image-container {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .header-image {
+      width: 375px;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    .image-description {
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.6;
+      margin: 0 auto;
+      max-width: 600px;
+      color: #000;
+    }
+    .continue-button {
+        background: #ffdeea;
+        background: radial-gradient(circle, rgba(255, 222, 234, 1) 100%, rgba(148, 187, 233, 1) 100%);;
+      padding: 12px 30px;
+      font-size: 17px;
+
+   
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .continue-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+    @media (max-width: 768px) {
+      .header-image {
+        width: 90%;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .image-description {
+        font-size: 17px;
+        padding: 0 15px;
+      }
+
+      .cost-display {
+        font-size: 17px;
+        padding: 0 15px;
+      }
+
+      .continue-button {
+        width: 90%;
+        font-size: 17px;
+        padding: 12px;
+      }
+
+      .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img src="/Users/yuanhsichou/Desktop/project/小卡.png" alt="粉絲合照" class="header-image">
+    <div class="image-description"><span style="font-size: 24px;"><strong>Idol Photo Card</strong></span><br><br>They include pre-order bonus cards offered by different stores. Designs are usually random, and each idol has multiple versions. Fans can collect, trade, or resell them (Taiwanese fans mostly use Facebook groups to trade).</div>
+  </div><br><br>
+
+  <div class="cost-display" id="total-cost-display">💰：元</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const currentPath = sessionStorage.getItem("pathHistory") || "";
+      sessionStorage.setItem("pathHistory", currentPath + ">card.html");
+
+      const params = new URLSearchParams(window.location.search);
+      const total = params.get('total');
+      const totalDisplay = document.getElementById('total-cost-display');
+      if (total) {
+        totalDisplay.innerText = `💰 Total Cost：${total} NTD`;
+      } else {
+        totalDisplay.innerText = '💰 Total Cost：0 NTD';
+      }
+    });
+  </script>
+
+  <div class="button-container">
+    <a href="news.html" class="continue-button">Discover fan stories!</a>
+  </div>
+</body>
+</html>

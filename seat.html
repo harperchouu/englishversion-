@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Seats</title>
+  <style>
+        @media (max-width: 768px) {
+      .progress > div {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .progress > div > div {
+        margin: 5px;
+      }
+
+      .progress > div > div[style*="width: 140px"] {
+        width: 60px !important;
+      }
+    }
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .top-bar {
+      background: #EEAECA;
+      background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+    .content {
+      display: flex;
+      height: calc(100vh - 50px);
+      overflow: hidden;
+    }
+    .left {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .left img {
+      width: auto;
+      max-height: 100%;
+      object-fit: contain;
+      border: 1px solid #ccc;
+    }
+    .right {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    .right img {
+      width: 100%;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+    }
+    /* prize.html連結樣式覆蓋，必須放在最後以確保覆蓋 */
+    a[href="prize.html"] div {
+      transition: background-color 0.3s, color 0.3s;
+    }
+    a[href="prize.html"]:hover div,
+    a[href="prize.html"]:active div {
+      filter: brightness(1.2);
+      color: gray;
+    }
+
+    @media (max-width: 768px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .content {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .left, .right {
+        flex: unset;
+        width: 100%;
+        padding: 10px;
+      }
+
+      .left img, .right img {
+        width: 100%;
+        height: auto;
+        max-height: unset;
+      }
+
+      .right {
+        max-height: none;
+      }
+
+      .top-bar > div {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .top-bar > div > div {
+        margin-right: 10px;
+      }
+
+      .top-bar + div {
+        padding: 20px 10px 10px 10px !important;
+      }
+
+      .top-bar + div > div {
+        margin-left: 0 !important;
+      }
+
+      .top-bar + div > div > div {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .top-bar + div > div > div > div {
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div style="display: flex; gap: 20px;">
+      <div>Home</div>
+      <div>Event Info</div>
+      <div>Latest News</div>
+      <div>FAQ</div>
+      <div>Order</div>
+    </div>
+    <div>Account</div>
+  </div>
+  <!-- 頂部進度條與選單 -->
+ <div style="padding: 50px 20px 10px 20px;">
+   <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; overflow-x: auto;">
+     <div style="display: flex; align-items: center; flex-wrap: nowrap; min-width: 600px;">
+       <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #2a4fa1; color: white; display: flex; align-items: center; justify-content: center; font-size: 18px;">✓</div>
+       <div style="width: 140px; height: 2px; background-color: #ccc;"></div>
+       <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #ccc;"></div>
+       <div style="width: 140px; height: 2px; background-color: #ccc;"></div>
+       <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #ccc;"></div>
+       <div style="width: 140px; height: 2px; background-color: #ccc;"></div>
+       <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #ccc;"></div>
+       <div style="width: 140px; height: 2px; background-color: #ccc;"></div>
+       <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #ccc;"></div>
+     </div>
+   </div>
+    <div style="font-size: 20px; font-weight: bold; margin-bottom: 10px; margin-left: 450px;">
+      Standard Chartered - Gummii Tour - Taipei
+    </div>
+  </div>
+  <div class="content">
+    <div class="left">
+      <img src="/Users/yuanhsichou/Desktop/project/gummii.png" alt="Concert Poster" />
+    </div>
+    <div class="right">
+      <div style="font-weight: bold; font-size: 16px;">Please select a seat</div>
+      <div style="display: flex; margin: 10px 0;">
+        <div style="background-color: #f0a7dd; color: black; padding: 10px 20px;">Auto Assignment</div>
+      </div>
+      <hr/>
+      <!-- Section 5880 -->
+      <div style="background-color: #eee; padding: 5px 10px; font-weight: bold; margin-top: 20px;">Section 5880</div>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#b2455d; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>VIP A Section 5880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#b2455d; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>VIP B Section 5880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#b2455d; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 220 Section No. 5880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#b2455d; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 219 Section No. 5880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#b2455d; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 218 Section No. 5880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#b2455d; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 209 Section No. 5880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#b2455d; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 208 Section No. 5880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#b2455d; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 207 Section No. 5880 <span style="color: red;">Hot</span></div>
+      </a>
+
+      <!-- Section 5380 -->
+      <div style="background-color: #eee; padding: 5px 10px; font-weight: bold; margin-top: 20px;">Section 5380</div>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#c5996b; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 220 Section No. 5380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#c5996b; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 219 Section No. 5380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#c5996b; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 218 Section No. 5380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#c5996b; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 217 Section No. 5380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#c5996b; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 215 Section No. 5380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#c5996b; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 214 Section No. 5380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#c5996b; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 213 Section No. 5380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#c5996b; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 212 Section No. 5380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#c5996b; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Orange 209 Section No. 5380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#c5996b; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Orange 208 Section No. 5380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#c5996b; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Orange 207 Section No. 5380 <span style="color: red;">Hot</span></div>
+      </a>
+
+      <!-- Section 4380 -->
+      <div style="background-color: #eee; padding: 5px 10px; font-weight: bold; margin-top: 20px;">Section 4380</div>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 220 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 219 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 218 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Red 217 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 216 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 215 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 214 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 213 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 212 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Orange 211 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Orange 210 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Orange 209 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Orange 208 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#dfc15f; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Orange 207 Section No. 4380 <span style="color: red;">Hot</span></div>
+      </a>
+
+      <!-- Section 3880 -->
+      <div style="background-color: #eee; padding: 5px 10px; font-weight: bold; margin-top: 20px;">Section 3880</div>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#678ec5; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 410 Section No. 3880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#678ec5; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 409 Section No. 3880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#678ec5; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 408 Section No. 3880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#678ec5; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 407 Section No. 3880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#678ec5; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 406 Section No. 3880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#678ec5; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 511 Section No. 3880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#678ec5; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 510 Section No. 3880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#678ec5; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 509 Section No. 3880 <span style="color: red;">Hot</span></div>
+      </a>
+      <a href="prize.html" style="text-decoration: none; color: inherit;">
+        <div><span style="background-color:#678ec5; display:inline-block; width:12px; height:12px; margin-right:5px;"></span>Green 508 Section No. 3880 <span style="color: red;">Hot</span></div>
+      </a>
+    </div>
+  </div>
+</body>
+<div id="countdown" style="position: fixed; bottom: 20px; right: 20px; background-color: #ffc; padding: 10px; border: 1px solid #ccc; z-index: 1000; font-weight: bold;"></div>
+
+<script>
+  // 初始化倒數時間（僅在未設定過時才設定）
+  if (!sessionStorage.getItem('startTime')) {
+    sessionStorage.setItem('startTime', Date.now().toString());
+  }
+
+  const countdownElement = document.getElementById("countdown");
+
+  const interval = setInterval(() => {
+    const startTime = parseInt(sessionStorage.getItem('startTime'), 10);
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const remaining = 10 - elapsed;
+
+    if (countdownElement) {
+      countdownElement.textContent = `Time remaining: ${remaining} seconds`;
+    }
+
+    if (remaining <= 0) {
+      clearInterval(interval);
+      sessionStorage.removeItem('startTime');  // 清除時間資料
+      alert("Too late");
+      window.location.href = "loading.html#timeout";
+    }
+  }, 1000);
+</script>
+</html>

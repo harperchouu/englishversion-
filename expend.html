@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>To Feel Closer to My Idol, I Want to Buy More Merchandise...<br><br><br>Please Select the Items You Want to Purchase</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      margin: 0;
+      padding: 0;
+    }
+    .money {
+      text-align: right;
+      padding: 20px;
+      font-size: 20px;
+    }
+    .title {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 180px;
+      margin-bottom: 70px;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .option {
+      width: 160px;
+      height: 80px;
+      background: #ffdeea;
+      background: radial-gradient(circle, rgba(255, 222, 234, 1) 100%, rgba(148, 187, 233, 1) 100%);;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 19px;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+
+ 
+      text-decoration: none;
+      color: inherit;
+    }
+    .option:hover,
+    .option:active {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+      text-decoration: none;
+      color: inherit;
+    }
+    @media (max-width: 768px) {
+      .title {
+        font-size: 18px;
+        margin-top: 100px;
+        margin-bottom: 40px;
+        padding: 0 15px;
+      }
+
+      .grid {
+        gap: 20px;
+        padding: 0 10px;
+      }
+
+      .option {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        padding: 15px;
+        font-size: 17px;
+      }
+
+      .money {
+        font-size: 18px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="money" class="money">💰 Total Cost:</div>
+  <div class="title">In addition to tickets and chat apps, here are more items you can buy to feel closer to your favorite idol.<br>Please select the items you want to purchase!</div>
+  <div class="grid">
+    <a href="card.html" class="option">Photo Card<br>400 NTD</a>
+    <a href="buble.html" class="option">Bubble<br>120 NTD/month</a>
+    <a href="lamp.html" class="option">Lightstick<br>1600 NTD</a>
+    <a href="poster.html" class="option">Banner<br>500 NTD</a>
+    <a href="sign.html" class="option">Signed Album<br>10,000 NTD</a>
+    <a href="none.html" class="option">Buy Nothing</a>
+  </div>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const currentPath = sessionStorage.getItem("pathHistory") || "";
+    sessionStorage.setItem("pathHistory", currentPath + ">expend.html");
+
+    const moneyDiv = document.getElementById('money');
+    const params = new URLSearchParams(window.location.search);
+    const source = params.get('source');
+    let baseCost = 0;
+
+    if (source === 'yes') {
+      baseCost = 22000;
+    } else if (source === 'no') {
+      baseCost = 0;
+    }
+
+    moneyDiv.innerText = `💰 Total Cost: ${baseCost} NTD`;
+
+    // 設定各選項加總後跳轉的 URL
+    const options = [
+      { selector: 'a[href="card.html"]', cost: 400 },
+      { selector: 'a[href="buble.html"]', cost: 120 },
+      { selector: 'a[href="lamp.html"]', cost: 1600 },
+      { selector: 'a[href="poster.html"]', cost: 500 },
+      { selector: 'a[href="sign.html"]', cost: 10000 },
+      { selector: 'a[href="none.html"]', cost: 0 }
+    ];
+
+    options.forEach(item => {
+      const element = document.querySelector(item.selector);
+      if (element) {
+        const totalCost = baseCost + item.cost;
+        element.href = `${element.getAttribute('href')}?total=${totalCost}`;
+      }
+    });
+  });
+</script>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    #professor-section {
+      padding: 20px;
+    }
+
+    #professor-img {
+      width: 80%;
+      max-width: 300px;
+      height: auto;
+    }
+
+    #professor-name,
+    #professor-text {
+      padding: 0 10px;
+    }
+
+    @media (max-width: 600px) {
+      .card-link {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .card-link img {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 0 10px 0;
+      }
+
+      .card-link div {
+        width: 100%;
+      }
+
+      #professor-text {
+        font-size: 16px;
+      }
+
+      #professor-name {
+        font-size: 18px;
+      }
+    }
+    .card-link {
+      display: flex;
+      align-items: center;
+      background-color: #f2f2f2;
+      padding: 15px;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: black;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-link:hover,
+    .card-link:active {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body style="overflow-y: auto;">
+
+<div id="professor-section">
+  <img id="professor-img" src="" alt="Professor" style="max-width: 300px; display: block; margin: 0 auto;">
+  <p id="professor-name" style="font-size: 20px; font-weight: bold; margin-top: 10px; text-align: center;"></p>
+  <p id="professor-text" style="font-size: 18px; max-width: 500px; margin: 20px auto; line-height: 1.6;"></p>
+  <div style="margin-top: 100px; margin-bottom: 100px; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <a href="https://unews.nccu.edu.tw/unews/idol-fans-consume/" class="card-link">
+      <img src="https://github.com/harperchouu/final/blob/main/IMG_0923.JPG?raw=true" alt="當追星成為金錢的軟量" style="width: 80px; height: auto; margin-right: 15px; flex-shrink: 0;">
+      <div>
+        <div style="font-weight: bold; font-size: 20px;">When Fandom Becomes a Money Game: How the Idol Industry Drives Consumption</div>
+      </div>
+    </a>
+    <a href="https://unews.nccu.edu.tw/unews/ticket-scalping-need/" class="card-link">
+      <img src="https://github.com/harperchouu/final/blob/main/DSC04630.JPG?raw=true" alt="誰搶走了門票？" style="width: 80px; height: auto; margin-right: 15px; flex-shrink: 0;">
+      <div>
+        <div style="font-weight: bold; font-size: 20px;">Who got the ticket?  A tense coexistence between scalpers and fans</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script>
+
+  const pathHistory = sessionStorage.getItem("pathHistory");
+
+
+  const professorMap = {
+    "A": {
+      img: "https://github.com/harperchouu/final/blob/main/%E5%B0%88%E5%AE%B6%EF%BC%88%E5%BF%83%E7%90%86%E5%B8%AB%EF%BC%89.png?raw=true",
+      name: "Counseling Psychologist Chia-Wen Lee",
+      text: "Fandom is often not just a phase, but a lifelong connection—so it’s important to learn to “log out” when necessary. When your idol goes silent, it may be because they are working hard. Fans should take this time to focus on their own growth and life."
+    },
+    "B": {
+      img: "https://github.com/harperchouu/final/blob/main/%E5%B0%88%E5%AE%B6%EF%BC%88%E5%AD%B8%E5%A7%8A%EF%BC%89.png?raw=true",
+      name: "Meng-Rong Wang, Master Student in Communication, NCCU (Researching Fan-Idol Intimacy)",
+      text: "Entertainment companies often base their strategies on heteronormative frameworks—for example, crafting the 'girlfriend fan' experience. While this provides a space for imagination, fans can become trapped in this romantic narrative, believing they should spend more money or sacrifice more."
+    },
+    "C": {
+      img: "https://github.com/harperchouu/final/blob/main/%E5%B0%88%E5%AE%B6%EF%BC%88%E6%9F%AF%EF%BC%89.png?raw=true",
+      name: "Yu-Fen Ko, Associate Professor of Journalism, NCCU",
+      text: "Rational fandom means setting boundaries and understanding your limits. In that way, being a fan becomes a healthy hobby."
+    }
+  };
+  let selected = "";
+
+  if (pathHistory && pathHistory.includes("yes.html>expend.html>")) {
+    if (pathHistory.includes(">none.html")) {
+      selected = "B";
+    } else {
+      selected = "A";
+    }
+  } else if (pathHistory && pathHistory.includes("no.html>expend.html>")) {
+    selected = "C";
+  }
+
+  if (selected) {
+    document.getElementById("professor-img").src = professorMap[selected].img;
+    document.getElementById("professor-name").textContent = professorMap[selected].name;
+    document.getElementById("professor-text").textContent = professorMap[selected].text;
+    const titleMap = {
+      "A": "You are a Devoted Fan",
+      "B": "You are a Rational Fan",
+      "C": "You are a Moderate Fan"
+    };
+    if (titleMap[selected]) {
+      document.title = titleMap[selected];
+    }
+  }
+</script>
+</body></html>

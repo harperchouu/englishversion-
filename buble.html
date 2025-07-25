@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Total Cost</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: white;
+    }
+    .cost-label {
+      font-size: 17px;
+      margin-top: 60px;
+      text-align: center;
+    }
+    .cost-display {
+      font-size: 17px;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .button-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .image-container {
+      text-align: center;
+      margin-top: 13px;
+    }
+
+    .header-image {
+      width: 375px;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    .image-description {
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.6;
+      margin: 0 auto;
+      max-width: 600px;
+      color: #000;
+    }
+    .continue-button {
+        background: #ffdeea;
+        background: radial-gradient(circle, rgba(255, 222, 234, 1) 100%, rgba(148, 187, 233, 1) 100%);;
+      padding: 12px 30px;
+      font-size: 17px;
+
+   
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .continue-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 10px;
+        height: auto;
+      }
+
+      .header-image {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .image-description {
+        font-size: 17px;
+        padding: 0 10px;
+        line-height: 1.5;
+      }
+
+      .cost-display {
+        font-size: 17px;
+        padding: 0 10px;
+      }
+
+      .continue-button {
+        width: 90%;
+        font-size: 17px;
+        padding: 12px;
+        margin: 20px auto 0;
+        display: block;
+      }
+
+      .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  </style>
+  
+</head>
+<body>
+  <div class="image-container">
+    <img src="/Users/yuanhsichou/Desktop/project/泡泡app（立體版）.png" alt="Fan Photo" class="header-image">
+    <div class="image-description"><span style="font-size: 24px;"><strong>Bubble</strong></span><br><br>A paid messaging app with a monthly subscription ranging from NT$100 to NT$150.<br>Idols send messages that feel like one-on-one chats, even though they are sent to all fans. Fans can also reply when idols text.
+  </div><br><br>
+
+  <div class="cost-display" id="total-cost-display">💰：NTD</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const currentPath = sessionStorage.getItem("pathHistory") || "";
+      sessionStorage.setItem("pathHistory", currentPath + ">buble.html");
+
+      const params = new URLSearchParams(window.location.search);
+      const total = params.get('total');
+      const costDisplay = document.getElementById('total-cost-display');
+      if (total) {
+        costDisplay.innerText = `💰Your Total Cost: ${total} NTD`;
+      } else {
+        costDisplay.innerText = '💰Your Total Cost: 0 NTD';
+      }
+    });
+  </script>
+
+  <div class="button-container">
+    <a href="new.html" class="continue-button">Discover fan stories!</a>
+  </div>
+</body>
+</html>

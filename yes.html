@@ -1,0 +1,123 @@
+<head>
+  <title>If You Can't Win the Ticket, Pay for It</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+    }
+  </style>
+</head>
+<!-- 捲動式影片：bubble -->
+<style>
+  @media screen and (max-width: 600px) {
+    #money-indicator {
+      top: 20px !important;
+      bottom: auto !important;
+      right: 20px !important;
+      left: auto !important;
+      font-size: 20px !important;
+      padding: 4px 10px;
+      z-index: 10000;
+    }
+  }
+</style>
+<div id="dlmbp">
+  <div id="money-indicator" style="position: fixed; top: 20px; right: 20px; z-index: 10000; font-size: 20px;">
+    💰Total Cost: 0 NTD
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // 記錄開始路徑
+      sessionStorage.setItem("pathHistory", "yes.html");
+ 
+      const baseAmount = 22000;
+      const options = {
+        'card.html': 400,
+        'buble.html': 120,
+        'lamp.html': 1600,
+        'poster.html': 500,
+        'sign.html': 10000,
+        'none.html': 0
+      };
+
+      document.querySelectorAll('a.option').forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault(); // 阻止立即跳轉
+
+          const href = this.getAttribute('href');
+          const extra = options[href] || 0;
+          const total = baseAmount + extra;
+
+          localStorage.setItem('totalCost', total);
+
+          // 稍作延遲以確保資料寫入後再跳轉
+          setTimeout(() => {
+            window.location.href = href;
+          }, 100);
+        });
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const observer = new MutationObserver(() => {
+        const videoWrapper = document.querySelector("video");
+        if (videoWrapper) {
+          observer.disconnect();
+          videoWrapper.addEventListener("timeupdate", () => {
+            if (videoWrapper.currentTime >= 6) {
+              const moneyTag = document.querySelector('#money-indicator');
+              if (moneyTag) {
+                moneyTag.textContent = "💰Total cost: 22000 NTD";
+              }
+            }
+          });
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  </script>
+  <!-- 捲動式影片：new2yes --><style>
+    #befhb .scrollable-video .section {
+      background-color: rgba(0, 0, 0, 0.7) !important;
+      color: white !important;
+    }
+    #befhb .scrollable-video .section * {
+      color: white !important;
+    }
+  </style><div id="befhb">
+      
+      <script>
+        (function() {
+          var namespace = '@story-telling-reporter/react-embed-code-generator@2.2.13';
+          var pkg = 'scrollable-video';
+          if (typeof window != 'undefined') {
+            if (!window.hasOwnProperty(namespace)) {
+              window[namespace] = {};
+            }
+            if (window[namespace] && !window[namespace].hasOwnProperty(pkg)) {
+              window[namespace][pkg] = [];
+            }
+            if (Array.isArray(window[namespace][pkg])) {
+              var data = {"video":{"src":"https:\u002F\u002Fharperchouu.github.io\u002Fvediodemo\u002Ffinal.mov","mobileSrc":"https:\u002F\u002Fharperchouu.github.io\u002Fvediodemo\u002Ffinal.mov","duration":19.62},"captions":[{"id":"loodm","width":"narrow","alignment":"left","startTime":6.14,"rawContentState":{"blocks":[{"key":"3ma1e","data":{},"text":"You’ve just received a bubble message from your idol Angela. Let’s see what she says!","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}},{"id":"mebda","width":"narrow","alignment":"left","startTime":9.83,"rawContentState":{"blocks":[{"key":"amt15","data":{},"text":"This is Bubble, a must-have chat app for fans. Idols sen messages that feel like one-on-one chats. Fans can even reply when the idol texts.","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}},{"id":"olhmc","width":"narrow","alignment":"left","startTime":12.71,"rawContentState":{"blocks":[{"key":"c04su","data":{},"text":"Bubble subscription costs around 100 to 150 NTD per idol per month. Subscribing to multiple idols adds up, but bundle deals make it more affordable.","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}},{"id":"dinll","width":"narrow","alignment":"left","startTime":18.433,"rawContentState":{"blocks":[{"key":"4iev0","data":{},"text":"Idols often send daily updates, making fans feel emotionally connected and simulating a one-on-one experience.","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}},{"id":"kcfpe","width":"narrow","alignment":"left","startTime":14.58,"rawContentState":{"blocks":[{"key":"4jn97","data":{},"text":"When an idol reads a fan's message or sends a new one, the ‘1’ beside the fan’s message disappears.","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}}],"darkMode":false,"secondsPer100vh":1.5,"uuid":"b4a6478c-ca3f-4e87-b2f6-3f04015193ae"};
+              window[namespace][pkg].push(data);
+            }
+          }
+        })()
+      </script>
+      <div id="b4a6478c-ca3f-4e87-b2f6-3f04015193ae"></div>
+      <script type="text/javascript" defer crossorigin src="https://cdn.jsdelivr.net/npm/@story-telling-reporter/react-embed-code-generator@2.2.13/dist/scrollable-video.js"></script>
+    </div>
+  <script>
+    let scrollTimeout;
+    window.addEventListener('scroll', function () {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const threshold = document.body.scrollHeight - 10;
+      if (scrollPosition >= threshold) {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          window.location.href = 'expend.html?source=yes';
+        }, 200); // Redirect after 5 seconds pause
+      }
+    });
+  </script>
+</div>
