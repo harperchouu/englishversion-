@@ -312,27 +312,26 @@
 <div id="countdown" style="position: fixed; bottom: 20px; right: 20px; background-color: #ffc; padding: 10px; border: 1px solid #ccc; z-index: 1000; font-weight: bold;"></div>
 
 <script>
-  const countdownElement = document.getElementById("countdown");
-
-  // 嘗試讀取 startTime，如果不存在或為 NaN，重新設定
-  let startTime = parseInt(sessionStorage.getItem('startTime'), 10);
-  if (isNaN(startTime)) {
-    startTime = Date.now();
-    sessionStorage.setItem('startTime', startTime.toString());
+  // 初始化倒數時間（僅在未設定過時才設定）
+  if (!sessionStorage.getItem('startTime')) {
+    sessionStorage.setItem('startTime', Date.now().toString());
   }
 
+  const countdownElement = document.getElementById("countdown");
+
   const interval = setInterval(() => {
+    const startTime = parseInt(sessionStorage.getItem('startTime'), 10);
     const elapsed = Math.floor((Date.now() - startTime) / 1000);
     const remaining = 10 - elapsed;
 
     if (countdownElement) {
-      countdownElement.textContent = `Time remaining: ${Math.max(remaining, 0)} seconds`;
+      countdownElement.textContent = `Time remaining：${remaining} 秒`;
     }
 
     if (remaining <= 0) {
       clearInterval(interval);
       sessionStorage.removeItem('startTime');  // 清除時間資料
-      alert("Too late");
+      alert("too slow");
       window.location.href = "loading.html#timeout";
     }
   }, 1000);
